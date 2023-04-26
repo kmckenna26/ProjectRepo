@@ -1,0 +1,33 @@
+<div class="container centered">
+  <div class="wrapper">
+    <h1>Submit Ticket</h1>
+    <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" #submitTicketForm="ngForm">
+      <div class="form-group">
+        <label for="title" class="form-label">Title (max 75 characters)</label>
+        <input type="text" class="form-control" id="title" formControlName="title" maxlength="75" required>
+      </div>
+      <div class="form-group">
+        <label for="device" class="form-label">Device</label>
+        <select class="form-control" id="device" formControlName="device" required>
+          <option value="">Select a device</option>
+          <option value="Personal Device">Personal Device</option>
+          <option value="Printer">Printer</option>
+          <option value="Phone">Phone</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="rebootAttempted" class="form-label">Reboot Attempted?</label>
+        <select class="form-control" id="rebootAttempted" formControlName="rebootAttempted" required>
+          <option value="">Select an option</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description" class="form-label">Description (max 250 characters)</label>
+        <textarea class="form-control" id="description" rows="3" formControlName="description" maxlength="250" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">Submit</button>
+    </form>
+  </div>
+</div>

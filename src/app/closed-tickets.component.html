@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Closed Tickets</h2>
+    <div *ngFor="let ticket of tickets" class="ticket">
+      <h3>{{ ticket.title }}</h3>
+      <p><strong>Device:</strong> {{ ticket.device }}</p>
+      <p><strong>Reboot Attempted:</strong> {{ ticket.rebootAttempted ? 'Yes' : 'No' }}</p>
+      <p><strong>Description:</strong> {{ ticket.description }}</p>
+      <p><strong>Priority:</strong> {{ ticket.priority }}</p>
+      <p><strong>Status:</strong> {{ ticket.status }}</p>
+      <p><strong>User Name:</strong> {{ ticket.user.name }}</p>
+      <p><strong>User Email:</strong> {{ ticket.user.email }}</p>
+    </div>
+  </div>
+  

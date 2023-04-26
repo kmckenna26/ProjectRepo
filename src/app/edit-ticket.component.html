@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2>Edit Ticket</h2>
+      <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" class="edit-ticket-form">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" formControlName="title" />
+        </div>
+        <div class="form-group">
+          <label for="device">Device</label>
+          <input type="text" class="form-control" id="device" formControlName="device" />
+        </div>
+        <div class="form-group">
+          <label for="rebootAttempted">Reboot Attempted</label>
+          <input type="text" class="form-control" id="rebootAttempted" formControlName="rebootAttempted" />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="priority">Priority</label>
+          <select class="form-control" id="priority" formControlName="priority">
+            <option value="low">Low</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form-control" id="status" formControlName="status">
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>

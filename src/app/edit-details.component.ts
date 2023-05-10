@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WebService } from './web.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-details',
@@ -14,12 +14,14 @@ export class EditDetailsComponent implements OnInit {
   userId: string | null = null;
   token: string | null = null;
   currentUser$: any;
+  isAdmin: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private webService: WebService,
     private snackBar: MatSnackBar,
     private router: Router,
+    private route: ActivatedRoute, // Inject ActivatedRoute here
   ) {
     this.editForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -35,9 +37,12 @@ export class EditDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.token = sessionStorage.getItem('token'); // Retrieve the token from local storage
     if (this.token) {
-      this.userId = this.webService.getUserIdFromToken(this.token);
+      this.isAdmin = this.webService.getIsAdminFromToken(this.token);
+      this.route.params.subscribe(params => {
+        this.userId = params['userId'];
+      });
       console.log('Token received:', this.token); // Log the token
-      console.log('User ID received:', this.userId); // Log the user ID
+      console.log('User ID received:', this.userId); // Log  the user ID
       this.fetchUser(this.token);
     } else {
       console.error('User not logged in');
@@ -84,7 +89,11 @@ export class EditDetailsComponent implements OnInit {
           () => {
             console.log('User details updated:', updatedUser);
             this.snackBar.open('User details updated', 'Close', { duration: 3000 });
-            this.router.navigate(['/user-dashboard']); // Add this line to navigate back to user-dashboard
+            if (this.isAdmin) {
+              this.router.navigate(['/all-users']);
+            } else {
+              this.router.navigate(['/user-dashboard']);
+            }
           },
           (error) => {
             console.error('Error updating user details:', error);
@@ -95,3 +104,4 @@ export class EditDetailsComponent implements OnInit {
     }
   }
 }
+  

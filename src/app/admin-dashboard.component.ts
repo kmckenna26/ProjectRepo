@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebService } from './web.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 type Ticket = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   priority: string;
@@ -19,7 +20,11 @@ export class AdminDashboardComponent implements OnInit {
   openTickets: Ticket[] = [];
   highPriorityTickets: Ticket[] = [];
 
-  constructor(private router: Router, private webService: WebService) { }
+  constructor(
+    private router: Router,
+    private webService: WebService,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     const token = sessionStorage.getItem('token'); // Retrieve the token from local storage
@@ -53,7 +58,12 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
+  goToEditTicket(ticketId: string): void {
+    this.router.navigate([`/edit-ticket/${ticketId}`]);
+  }
+  
   onLogout(): void {
     this.router.navigate(['/welcome']);
   }
 }
+ 

@@ -17,10 +17,11 @@
         <td>{{ticket.title}}</td>
         <td>{{ticket.status}}</td>
         <td>
-          <button class="btn btn-primary btn-sm" (click)="editTicket(ticket._id)">Edit Details</button>
+          <button class="btn btn-primary btn-sm" (click)="goToEditTicket(ticket._id)">Edit Ticket</button>
           <button class="btn btn-danger btn-sm" (click)="deleteTicket(ticket._id)">Delete Ticket</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+ 

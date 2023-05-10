@@ -22,9 +22,11 @@ const routes: Routes = [
     { path: 'user-dashboard', component: UserDashboardComponent },
     { path: 'submit-ticket', component: SubmitTicketComponent},
     { path: 'edit-details', component: EditDetailsComponent},
+    { path: 'edit-user/:userId', component: EditDetailsComponent},
     { path: 'admin-dashboard', component: AdminDashboardComponent},
     { path: 'all-users', component: AllUsersComponent},
     { path: 'edit-ticket', component: EditTicketComponent},
+    { path: 'edit-ticket/:ticketId', component: EditTicketComponent},
     { path: 'closed-tickets', component: ClosedTicketsComponent},
     { path: 'ticket-details', component: TicketDetailsComponent},
     // Add any other routes here 

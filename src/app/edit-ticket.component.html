@@ -1,40 +1,64 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6">
+      <h2>Current Ticket Details</h2>
+      <div class="card">
+        <div class="card-body">
+          <p><strong>Title:</strong> {{ticketForm.value.title}}</p>
+          <p><strong>Device:</strong> {{ticketForm.value.device}}</p>
+          <p><strong>Reboot Attempted:</strong> {{ticketForm.value.reboot_attempted}}</p>
+          <p><strong>Description:</strong> {{ticketForm.value.description}}</p>
+          <p><strong>Status:</strong> {{ticketForm.value.status}}</p>
+        </div>
+      </div>                  
+    </div>
+    <div class="col-md-6">
       <h2>Edit Ticket</h2>
-      <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" class="edit-ticket-form">
+      <form [formGroup]="ticketForm" (ngSubmit)="saveChanges()" class="edit-ticket-form">
         <div class="form-group">
-          <label for="title">Title</label>
+          <label for="name">Title</label>
           <input type="text" class="form-control" id="title" formControlName="title" />
         </div>
         <div class="form-group">
-          <label for="device">Device</label>
-          <input type="text" class="form-control" id="device" formControlName="device" />
-        </div>
-        <div class="form-group">
-          <label for="rebootAttempted">Reboot Attempted</label>
-          <input type="text" class="form-control" id="rebootAttempted" formControlName="rebootAttempted" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="priority">Priority</label>
-          <select class="form-control" id="priority" formControlName="priority">
-            <option value="low">Low</option>
-            <option value="high">High</option>
+          <label for="device" class="form-label">Device</label>
+          <select class="form-control" id="device" formControlName="device" required>
+            <option value="">Select a device</option>
+            <option value="Personal Device">Personal Device</option>
+            <option value="Printer">Printer</option>
+            <option value="Phone">Phone</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="status">Status</label>
-          <select class="form-control" id="status" formControlName="status">
+          <label for="reboot_attempted" class="form-label">Reboot Attempted</label>
+          <select class="form-control" id="reboot_attempted" formControlName="reboot_attempted" required>
+            <option value="">Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="email">Description</label>
+          <input type="text" class="form-control" id="description" formControlName="description" />
+        </div>
+        <div class="form-group">
+          <label for="status" class="form-label">Status</label>
+          <select class="form-control" id="status" formControlName="status" required>
+            <option value="">Select an option</option>
             <option value="open">Open</option>
             <option value="closed">Closed</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">Save Changes</button>
+        <div class="form-group">
+          <label for="priority" class="form-label">Priority</label>
+          <select class="form-control" id="priority" formControlName="priority" required>
+            <option value="">Select an option</option>
+            <option value="Low">Low</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <button mat-raised-button color="primary" (click)="saveChanges()">Save Changes</button>
       </form>
     </div>
   </div>
 </div>
+ 

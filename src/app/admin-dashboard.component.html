@@ -9,8 +9,7 @@
             <div class="card ticket-card" *ngIf="!ticket.priority">
               <div class="card-body">
                 <h6 class="card-title">{{ ticket.title }}</h6>
-                <button mat-raised-button color="primary">Edit Ticket</button>
-                <button mat-raised-button color="warn">Delete Ticket</button>
+                <button (click)="goToEditTicket(ticket._id)">Edit</button>
               </div> 
             </div>
           </div>
@@ -27,8 +26,7 @@
             <div class="card ticket-card high-priority" *ngIf="ticket.priority">
               <div class="card-body">
                 <h6 class="card-title">{{ ticket.title }}</h6>
-                <button mat-raised-button color="primary">Edit Ticket</button>
-                <button mat-raised-button color="warn">Delete Ticket</button>
+                <button (click)="goToEditTicket(ticket._id)">Edit</button>
               </div>
             </div>
           </div>
@@ -42,4 +40,5 @@
     <button mat-raised-button color="primary" routerLink="/all-users">View All Users</button>
     <button mat-raised-button color="primary" routerLink="/closed-tickets">Closed Tickets</button>
   </div>
-</div>
+</div> 
+ 

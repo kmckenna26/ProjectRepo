@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { WebService } from './web.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { WebService } from './web.service';
 export class AllUsersComponent implements OnInit {
   users: any[] = [];
 
-  constructor(private webService: WebService) { }
+  constructor(private webService: WebService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchAllUsers();
@@ -46,9 +47,7 @@ export class AllUsersComponent implements OnInit {
   }
 
   editUser(id: string): void {
-    // Redirect to the edit user page for the selected user
-    // Replace this with the actual logic to navigate to the edit user page
-    console.log('Edit user with ID:', id);
+    this.router.navigate(['/edit-user', id]);
   }
-}
- 
+} 
+  

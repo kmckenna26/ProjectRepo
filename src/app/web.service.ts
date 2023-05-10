@@ -86,12 +86,12 @@ export class WebService {
 
   getUserTickets(userId: string, token: string): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/v1.0/users/${userId}/tickets`, this.getHttpOptions(token));
-  }
+  }  
 
-  getTicket(ticketId: string, token: string) {
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.get(`/api/ticket/${ticketId}`, { headers });
+  getTicket(ticketId: string, token: string): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/v1.0/tickets/${ticketId}`, this.getHttpOptions(token));
   }
+  
    
 }
  

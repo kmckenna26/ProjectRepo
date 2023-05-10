@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebService } from './web.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-closed-tickets',
@@ -9,7 +10,7 @@ import { WebService } from './web.service';
 export class ClosedTicketsComponent implements OnInit {
   closedTickets: any[] = [];
 
-  constructor(private webService: WebService) { }
+  constructor(private webService: WebService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchClosedTickets();
@@ -45,9 +46,8 @@ export class ClosedTicketsComponent implements OnInit {
     }
   }
 
-  editTicket(id: string): void {
-    // Redirect to the edit ticket page for the selected ticket
-    // Replace this with the actual logic to navigate to the edit ticket page
-    console.log('Edit ticket with ID:', id);
+  goToEditTicket(ticketId: string): void {
+    this.router.navigate([`/edit-ticket/${ticketId}`]);
   }
 }
+ 

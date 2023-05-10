@@ -22,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private router: Router, private webService: WebService) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+    const token = sessionStorage.getItem('token'); // Retrieve the token from local storage
     if (token) {
       this.fetchOpenTickets(token);
       this.fetchHighPriorityTickets(token);

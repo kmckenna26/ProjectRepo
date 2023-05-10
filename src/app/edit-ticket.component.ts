@@ -31,8 +31,8 @@ export class EditTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
-    const userId = localStorage.getItem('userId'); // Retrieve the userId from local storage
+    const token = sessionStorage.getItem('token'); // Retrieve the token from local storage
+    const userId = sessionStorage.getItem('userId'); // Retrieve the userId from local storage
     this.ticketId = this.route.snapshot.paramMap.get('ticketId') || '';
 
     if (token && userId && this.ticketId) {
@@ -43,9 +43,9 @@ export class EditTicketComponent implements OnInit {
   }
 
   fetchTicket(userId: string, ticketId: string, token: string): void {
-    this.webService.getUserTickets(userId, token).subscribe(
+    this.webService.getUserTickets(token, userId).subscribe(
       (tickets) => {
-        const ticket = tickets.find(ticket => ticket.id === ticketId);
+        const ticket = tickets.find((ticket: any) => ticket.id === ticketId);
         if (ticket) {
           this.ticketForm.patchValue(ticket);
         }
@@ -58,12 +58,12 @@ export class EditTicketComponent implements OnInit {
 
   onSubmit(): void {
     if (this.ticketForm.valid) {
-      const userId = localStorage.getItem('userId');
-      const token = localStorage.getItem('token');
+      const userId = sessionStorage.getItem('userId');
+      const token = sessionStorage.getItem('token');
 
       if (userId && token) {
         const updatedTicket = this.ticketForm.value;
-        this.webService.editTicket(userId, this.ticketId, updatedTicket, token).subscribe(
+        this.webService.editTicket(this.ticketId, updatedTicket, token).subscribe(
           () => {
             console.log('Ticket updated successfully');
             this.router.navigate(['/admin-dashboard']);

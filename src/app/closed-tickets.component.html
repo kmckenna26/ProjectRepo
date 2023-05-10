@@ -1,14 +1,26 @@
 <div class="container">
-    <h2>Closed Tickets</h2>
-    <div *ngFor="let ticket of tickets" class="ticket">
-      <h3>{{ ticket.title }}</h3>
-      <p><strong>Device:</strong> {{ ticket.device }}</p>
-      <p><strong>Reboot Attempted:</strong> {{ ticket.rebootAttempted ? 'Yes' : 'No' }}</p>
-      <p><strong>Description:</strong> {{ ticket.description }}</p>
-      <p><strong>Priority:</strong> {{ ticket.priority }}</p>
-      <p><strong>Status:</strong> {{ ticket.status }}</p>
-      <p><strong>User Name:</strong> {{ ticket.user.name }}</p>
-      <p><strong>User Email:</strong> {{ ticket.user.email }}</p>
-    </div>
-  </div>
-  
+  <h1>Closed Tickets</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Ticket ID</th>
+        <th scope="col">User</th>
+        <th scope="col">Issue</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of closedTickets">
+        <td>{{ticket._id}}</td>
+        <td>{{ticket.username}}</td>
+        <td>{{ticket.title}}</td>
+        <td>{{ticket.status}}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="editTicket(ticket._id)">Edit Details</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteTicket(ticket._id)">Delete Ticket</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

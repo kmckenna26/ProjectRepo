@@ -1,12 +1,19 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F4F4F4;
+  color: #333;
+}
+
 .container {
   margin-top: 2rem;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   transition: 0.3s;
   border: none;
   border-radius: 5px;
+  margin-bottom: 2rem;
 }
 
 .card:hover {
@@ -18,19 +25,43 @@
 }
 
 .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #4A4A4A;
 }
 
-.list-group-item {
-  border: none;
+.ticket-card {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
+}
+
+.ticket-card h6 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-card p {
+  font-size: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 .btn-primary,
 .btn-secondary {
   font-weight: bold;
   text-transform: uppercase;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 .btn-primary:hover,

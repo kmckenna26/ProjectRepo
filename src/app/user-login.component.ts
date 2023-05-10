@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { WebService } from './web.service';
+import { AuthService } from './auth.service'; // Import AuthService instead of WebService
 
 @Component({
   selector: 'app-user-login',
@@ -13,7 +13,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private webService: WebService,
+    private authService: AuthService, // Inject AuthService instead of WebService
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -27,10 +27,10 @@ export class UserLoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      this.webService.login(username, password).subscribe({
+      this.authService.login(username, password).subscribe({
         next: (response: any) => {
           console.log('Logged in successfully', response);
-          localStorage.setItem('token', response.token);
+          sessionStorage.setItem('token', response.token);
 
           this.router.navigate(['/user-dashboard']);
         },

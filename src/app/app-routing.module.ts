@@ -11,6 +11,7 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import { AllUsersComponent } from './all-users.component';
 import { EditTicketComponent } from './edit-ticket.component';
 import { ClosedTicketsComponent } from './closed-tickets.component';
+import { TicketDetailsComponent } from './ticket-details.component';
 // Import your other components here
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'all-users', component: AllUsersComponent},
     { path: 'edit-ticket', component: EditTicketComponent},
     { path: 'closed-tickets', component: ClosedTicketsComponent},
+    { path: 'ticket-details', component: TicketDetailsComponent},
     // Add any other routes here 
 ];
 

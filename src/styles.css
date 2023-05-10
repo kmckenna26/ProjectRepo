@@ -1,5 +1,24 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.content-container {
+  min-height: calc(100% - 50px); /* Adjust this value based on the footer height */
+  padding-bottom: 50px; /* Same value as the footer height */
+}
+
+.footer-content {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  background-color: rgba(128, 128, 128, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

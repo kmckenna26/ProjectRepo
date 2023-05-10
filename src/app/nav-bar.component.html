@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
   <span class="title">CentralHelp</span>
   <span class="spacer"></span>
-  <div *ngIf="(authService.isAuthenticated | async)">
+  <div *ngIf="isLoggedIn | async">
     <button mat-button routerLink="/submit-ticket">Submit a Ticket</button>
     <button mat-button (click)="logout()">Logout</button>
   </div>
-  <div *ngIf="!(authService.isAuthenticated | async)">
+  <div *ngIf="!(isLoggedIn | async)">
     <button mat-button routerLink="/user-login">User Login</button>
     <button mat-button routerLink="/admin-login">Admin Login</button>
     <button mat-button routerLink="/user-signup">Signup</button>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WebService } from './web.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-closed-tickets',
@@ -8,29 +7,47 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./closed-tickets.component.css']
 })
 export class ClosedTicketsComponent implements OnInit {
-  tickets: any[] = [];
+  closedTickets: any[] = [];
 
-  constructor(private webService: WebService, private snackBar: MatSnackBar) { }
+  constructor(private webService: WebService) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    this.fetchClosedTickets();
+  }
+
+  fetchClosedTickets(): void {
+    const token = sessionStorage.getItem('token');
     if (token) {
-      this.fetchClosedTickets(token);
-    } else {
-      console.error('User not logged in');
-      this.snackBar.open('User not logged in', 'Close', { duration: 3000 });
+      this.webService.getClosedTickets(token).subscribe(
+        (response: any[]) => {
+          this.closedTickets = response;
+        },
+        (error) => {
+          console.error('Error fetching closed tickets:', error);
+        }
+      );
     }
   }
 
-  fetchClosedTickets(token: string): void {
-    this.webService.getClosedTickets(token).subscribe(
-      (data) => {
-        this.tickets = data;
-      },
-      (error) => {
-        console.error('Error fetching closed tickets:', error);
-        this.snackBar.open('Error fetching closed tickets', 'Close', { duration: 3000 });
+  deleteTicket(id: string): void {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      if (confirm('Are you sure? Deleting a ticket is permanent.')) {
+        this.webService.deleteTicket(id, token).subscribe(
+          () => {
+            this.fetchClosedTickets();
+          },
+          (error) => {
+            console.error('Error deleting ticket:', error);
+          }
+        ); 
       }
-    );
+    }
+  }
+
+  editTicket(id: string): void {
+    // Redirect to the edit ticket page for the selected ticket
+    // Replace this with the actual logic to navigate to the edit ticket page
+    console.log('Edit ticket with ID:', id);
   }
 }

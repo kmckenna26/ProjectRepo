@@ -16,7 +16,7 @@ export class AllUsersComponent implements OnInit {
   }
 
   fetchAllUsers(): void {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token) {
       this.webService.getAllUsers(token).subscribe(
         (response: any[]) => {
@@ -30,7 +30,7 @@ export class AllUsersComponent implements OnInit {
   }
 
   deleteUser(id: string): void {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token) {
       if (confirm('Are you sure? Deleting a user is permanent.')) {
         this.webService.deleteUser(id, token).subscribe(
@@ -51,3 +51,4 @@ export class AllUsersComponent implements OnInit {
     console.log('Edit user with ID:', id);
   }
 }
+ 

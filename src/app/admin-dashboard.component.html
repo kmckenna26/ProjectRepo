@@ -1,37 +1,45 @@
 <div class="container">
   <div class="row">
-    <!-- Open Tickets -->
+    <!-- All Tickets -->
     <div class="col-md-6">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>Open Tickets</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">All Tickets</h5>
           <div *ngFor="let ticket of openTickets">
-            <p>{{ ticket.title }}</p>
+            <div class="card ticket-card" *ngIf="!ticket.priority">
+              <div class="card-body">
+                <h6 class="card-title">{{ ticket.title }}</h6>
+                <button mat-raised-button color="primary">Edit Ticket</button>
+                <button mat-raised-button color="warn">Delete Ticket</button>
+              </div> 
+            </div>
           </div>
-        </mat-card-content>
-      </mat-card>
+        </div>
+      </div>
     </div>
 
     <!-- High Priority Tickets -->
     <div class="col-md-6">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>High Priority Tickets</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div *ngFor="let ticket of highPriorityTickets">
-            <p>{{ ticket.title }}</p>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">High Priority Tickets</h5>
+          <div *ngFor="let ticket of openTickets">
+            <div class="card ticket-card high-priority" *ngIf="ticket.priority">
+              <div class="card-body">
+                <h6 class="card-title">{{ ticket.title }}</h6>
+                <button mat-raised-button color="primary">Edit Ticket</button>
+                <button mat-raised-button color="warn">Delete Ticket</button>
+              </div>
+            </div>
           </div>
-        </mat-card-content>
-      </mat-card>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="button-container">
     <button mat-raised-button color="primary" routerLink="/submit-ticket">Submit Ticket</button>
     <button mat-raised-button color="primary" routerLink="/all-users">View All Users</button>
-    <button mat-raised-button color="primary" routerLink="/closed-tickets">Closed Tickets</button> <!-- Added closed-tickets button -->
+    <button mat-raised-button color="primary" routerLink="/closed-tickets">Closed Tickets</button>
   </div>
 </div>

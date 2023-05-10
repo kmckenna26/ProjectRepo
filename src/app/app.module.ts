@@ -25,6 +25,8 @@ import { AllUsersComponent } from './all-users.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditTicketComponent } from './edit-ticket.component';
 import { ClosedTicketsComponent } from './closed-tickets.component';
+import { FooterComponent } from './footer.component';
+import { TicketDetailsComponent } from './ticket-details.component';
 
 
 
@@ -43,6 +45,8 @@ import { ClosedTicketsComponent } from './closed-tickets.component';
     AllUsersComponent,
     EditTicketComponent,
     ClosedTicketsComponent,
+    FooterComponent,
+    TicketDetailsComponent,
   ],
   imports: [
     BrowserModule,

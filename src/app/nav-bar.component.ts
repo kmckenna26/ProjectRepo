@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
+import { BehaviorSubject } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,12 +8,24 @@ import { AuthService } from './auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  private loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
+  isLoggedIn = this.loggedIn.asObservable();
 
-  constructor(public authService: AuthService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
+  checkLoginStatus(): boolean {
+    return !!sessionStorage.getItem('token');
+  }
+
+  login(): void {
+    this.loggedIn.next(true);
+  }
+
   logout(): void {
-    this.authService.logout();
+    sessionStorage.removeItem('token');
+    this.loggedIn.next(false);
+    this.router.navigate(['/']);
   }
 }

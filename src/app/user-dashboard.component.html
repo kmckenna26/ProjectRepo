@@ -1,19 +1,25 @@
-<p>User Dashboard Component</p>
-
-<div class="container d-flex justify-content-center">
-  <div class="card w-50">
-    <div class="card-body">
-      <h5 class="card-title">User Dashboard</h5>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let ticket of tickets" class="list-group-item">
-          {{ ticket.title }} - {{ ticket.description }}
-        </li>
-      </ul>
+<div class="container">
+  <!-- My Tickets -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Your Tickets</h5>
+          <div *ngFor="let ticket of tickets">
+            <div class="card ticket-card">
+              <div class="card-body">
+                <h6 class="card-title">{{ ticket.title }}</h6>
+                <p class="card-text">{{ ticket.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container d-flex justify-content-center mt-3">
-  <button class="btn btn-primary me-3" routerLink="/submit-ticket">Submit Ticket</button>
-  <button class="btn btn-secondary" routerLink="/edit-user">Edit Details</button>
+  <div class="button-container d-flex justify-content-center mt-3">
+    <button class="btn btn-primary me-3" routerLink="/submit-ticket">Submit Ticket</button>
+    <button class="btn btn-secondary" routerLink="/edit-details">Edit Details</button>
+  </div>
 </div>

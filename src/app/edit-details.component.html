@@ -1,11 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6">
+      <h2>Current Details</h2>
+      <div class="card">
+        <div class="card-body">
+          <p><strong>Name:</strong> {{editForm.value.name}}</p>
+          <p><strong>DOB:</strong> {{editForm.value.dob}}</p>
+          <p><strong>Phone:</strong> {{editForm.value.phone}}</p>
+          <p><strong>Email:</strong> {{editForm.value.email}}</p>
+          <p><strong>Primary Device:</strong> {{editForm.value.primaryDevice}}</p>
+          <p><strong>Username:</strong> {{editForm.value.username}}</p>
+          <p><strong>Password:</strong> *******</p>
+        </div>
+      </div>                  
+    </div>
+    <div class="col-md-6">
       <h2>Edit Details</h2>
-      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="edit-details-form">
+      <form [formGroup]="editForm" (ngSubmit)="saveChanges()" class="edit-details-form">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" formControlName="name" />
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" class="form-control" id="dob" formControlName="dob" />
         </div>
         <div class="form-group">
           <label for="phone">Phone Number</label>
@@ -19,7 +37,15 @@
           <label for="primaryDevice">Primary Device</label>
           <input type="text" class="form-control" id="primaryDevice" formControlName="primaryDevice" />
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Save Changes</button>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" formControlName="username" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" />
+        </div>
+        <button mat-raised-button color="primary" (click)="saveChanges()">Save Changes</button>
       </form>
     </div>
   </div>

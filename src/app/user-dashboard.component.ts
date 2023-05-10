@@ -15,7 +15,7 @@ export class UserDashboardComponent implements OnInit {
   constructor(private webService: WebService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+    const token = sessionStorage.getItem('token'); // Retrieve the token from local storage
     if (token) {
       this.userId = this.webService.getUserIdFromToken(token);
       this.fetchUser(token);
@@ -52,4 +52,4 @@ export class UserDashboardComponent implements OnInit {
       }
     });
   }
-}
+} 

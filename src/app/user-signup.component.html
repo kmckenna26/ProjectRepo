@@ -1,39 +1,38 @@
 <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h2>User Signup</h2>
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" formControlName="name" id="name" required>
-          </div>
-          <div class="form-group">
-            <label for="dob">Date of Birth:</label>
-            <input type="date" class="form-control" formControlName="dob" id="dob" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number:</label>
-            <input type="tel" class="form-control" formControlName="phone" id="phone" pattern="^[0-9]{11}$" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" formControlName="email" id="email" required>
-          </div>
-          <div class="form-group">
-            <label for="primaryDevice">Primary Device:</label>
-            <input type="text" class="form-control" formControlName="primaryDevice" id="primaryDevice" required>
-          </div>
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" formControlName="username" id="username" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" formControlName="password" id="password" required>
-          </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Sign Up</button>
-        </form>
-      </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>User Signup</h2>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" formControlName="name" id="name" [ngClass]="{'has-error': signupForm.get('name')?.invalid && signupForm.get('name')?.touched}" required>
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" class="form-control" formControlName="dob" id="dob" [ngClass]="{'has-error': signupForm.get('dob')?.invalid && signupForm.get('dob')?.touched}" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" class="form-control" formControlName="phone" id="phone" pattern="^[0-9]{11}$" [ngClass]="{'has-error': signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" formControlName="email" id="email" [ngClass]="{'has-error': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}" required>
+        </div>
+        <div class="form-group">
+          <label for="primaryDevice">Primary Device:</label>
+          <input type="text" class="form-control" formControlName="primaryDevice" id="primaryDevice" [ngClass]="{'has-error': signupForm.get('primaryDevice')?.invalid && signupForm.get('primaryDevice')?.touched}" required>
+        </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" formControlName="username" id="username" [ngClass]="{'has-error': signupForm.get('username')?.invalid && signupForm.get('username')?.touched}" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" formControlName="password" id="password" [ngClass]="{'has-error': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Sign Up</button>
+      </form>
     </div>
   </div>
- 
+</div>
